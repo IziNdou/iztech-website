@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
 
       try {
-        const res = await fetch('/api/contact', {
+        const res = await fetch('https://us-central1-iztech-d145d.cloudfunctions.net/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),

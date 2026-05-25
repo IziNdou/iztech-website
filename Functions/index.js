@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 const SMTP_USER = defineSecret('SMTP_USER');
 const SMTP_PASS = defineSecret('SMTP_PASS');
 
-exports.contact = onRequest({ secrets: [SMTP_USER, SMTP_PASS] }, async (req, res) => {
+exports.contact = onRequest({ secrets: [SMTP_USER, SMTP_PASS], invoker: 'public' }, async (req, res) => {
   // Allow CORS
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
