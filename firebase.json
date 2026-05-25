@@ -10,12 +10,19 @@
     ]
   },
   "hosting": {
-    "public": ".",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
       "Functions/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/contact",
+        "function": "contact",
+        "region": "us-central1"
+      }
     ]
   }
 }

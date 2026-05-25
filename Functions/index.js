@@ -29,9 +29,9 @@ exports.contact = onRequest({ secrets: [SMTP_USER, SMTP_PASS] }, async (req, res
   }
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    host: 'smtpout.secureserver.net',
+    port: 465,
+    secure: true,
     auth: {
       user: SMTP_USER.value(),
       pass: SMTP_PASS.value(),
