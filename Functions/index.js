@@ -1,7 +1,11 @@
-const functions = require('firebase-functions');
+const { onRequest } = require('firebase-functions/v2/https');
+const { defineSecret } = require('firebase-functions/params');
 const nodemailer = require('nodemailer');
 
-exports.contact = functions.https.onRequest(async (req, res) => {
+const SMTP_USER = defineSecret('SMTP_USER');
+const SMTP_PASS = defineSecret('SMTP_PASS');
+
+exports.contact = onRequest({ secrets: [SMTP_USER, SMTP_PASS] }, async (req, res) => {
   // Allow CORS
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -29,15 +33,15 @@ exports.contact = functions.https.onRequest(async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: functions.config().smtp.user,
-      pass: functions.config().smtp.pass,
+      user: SMTP_USER.value(),
+      pass: SMTP_PASS.value(),
     },
   });
 
   try {
     // Email to IZTECH
     await transporter.sendMail({
-      from: `"IZTECH Website" <${functions.config().smtp.user}>`,
+      from: `"IZTECH Website" <${SMTP_USER.value()}>`,
       to: 'Izindou@Iztech.co.za',
       replyTo: email,
       subject: `New Enquiry from ${name}${company ? ` — ${company}` : ''}`,
@@ -58,7 +62,7 @@ exports.contact = functions.https.onRequest(async (req, res) => {
 
     // Auto-reply to sender
     await transporter.sendMail({
-      from: `"IZTECH Consultants & Supplies" <${functions.config().smtp.user}>`,
+      from: `"IZTECH Consultants & Supplies" <${SMTP_USER.value()}>`,
       to: email,
       subject: 'We received your message — IZTECH',
       html: `
