@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
           showFeedback('error', result.message || 'Something went wrong. Please try again.');
         }
       } catch (err) {
-        showFeedback('error', 'Network error. Please email us directly at Izindou@Iztech.co.za');
+        showFeedback('error', 'Network error. Please email us directly at Iztndou@Iztech.co.za');
       } finally {
         submitBtn.classList.remove('loading');
         submitBtn.disabled = false;

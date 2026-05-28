@@ -42,7 +42,7 @@ exports.contact = onRequest({ secrets: [SMTP_USER, SMTP_PASS], invoker: 'public'
     // Email to IZTECH
     await transporter.sendMail({
       from: `"IZTECH Website" <${SMTP_USER.value()}>`,
-      to: 'Izindou@Iztech.co.za',
+      to: 'Iztndou@Iztech.co.za',
       replyTo: email,
       subject: `New Enquiry from ${name}${company ? ` — ${company}` : ''}`,
       html: `

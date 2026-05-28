@@ -44,7 +44,7 @@ app.post('/api/contact', async (req, res) => {
 
   const mailOptions = {
     from: `"IZTECH Website" <${process.env.SMTP_USER}>`,
-    to: 'Izindou@Iztech.co.za',
+    to: 'Iztndou@Iztech.co.za',
     replyTo: email,
     subject: `New Enquiry from ${name}${company ? ` — ${company}` : ''}`,
     html: `
